@@ -1,15 +1,31 @@
 // get number included in this array but excluded in other array
-const getNumberExcluded = (arrayToCheck = [], arrayToCompare = []) => {
-	const results = arrayToCheck.filter((x) => {
-		return !arrayToCompare.includes(x);
+const getNumberExcluded = (numbersToCheck = [], numbersToCompare = []) => {
+	const results = numbersToCheck.filter((x) => {
+		return !numbersToCompare.includes(x);
 	});
 	return results;
 };
 
+// check input validity
+const isValidArray = (array = []) => {
+	return array.length > 1 && array.length < Math.pow(10, 10);
+};
+
+const isValidInput = (numbersToCheck = [], numbersToCompare = []) => {
+	return isValidArray(numbersToCheck) && isValidArray(numbersToCompare);
+};
+
 // get number included in both array
-const getNumberIncludedBoth = (arrayToCheck = [], arrayToCompare = []) => {
-	const results = arrayToCheck.filter((x) => {
-		return arrayToCompare.includes(x);
+const getNumberIncludedBoth = (numbersToCheck = [], numbersToCompare = []) => {
+	let valid = isValidInput(numbersToCheck, numbersToCompare);
+	if (!valid) {
+		console.log(
+			"Input not valid: length each array should be > 1 and < 10^10"
+		);
+		return;
+	}
+	const results = numbersToCheck.filter((x) => {
+		return numbersToCompare.includes(x);
 	});
 	return results;
 };
